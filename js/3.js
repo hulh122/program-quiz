@@ -13,3 +13,6 @@ promise.then(() => {
     console.log(5);
 })
 console.log(6);
+
+
+// 2 3 6 5 4 1
