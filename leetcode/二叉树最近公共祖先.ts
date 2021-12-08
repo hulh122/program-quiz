@@ -1,21 +1,11 @@
-class TreeNode {
-    val: number
-    left: TreeNode | null
-    right: TreeNode | null
-
-    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-        this.val = (val === undefined ? 0 : val)
-        this.left = (left === undefined ? null : left)
-        this.right = (right === undefined ? null : right)
-    }
-}
-
 /*
 * 二叉树双节点的最近公共祖先
 * 思路：
 * 1. 公共祖先必然满足条件：若公共祖先不为两节点之一，一定在左子树和右子树存在两节点。若公共祖先为节点之一，在左子树或右子树存在其中一个节点。
 * 2. 用 map 存上每个节点的父节点，再由两节点向上寻找，找到最近一个被访问过的节点即可
 * */
+import { TreeNode } from '../data/BST';
+
 function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null, q: TreeNode | null): TreeNode | null {
     let res = null;
 
