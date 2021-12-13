@@ -109,19 +109,23 @@ function noRecursionPostorder(node: TreeNode): number[] {
     const res = [];
     const stack = [];
     let head = node;
+    const visitedMap = new Map<TreeNode, boolean>();
 
     while (head || stack.length) {
         while (head) {
             stack.push(head);
             head = head.left;
         }
-        console.log(stack);
         if (stack.length) {
-            const node = stack.pop();
-            if (node.right) {
+            const node = stack[stack.length - 1];
+            // 已访问过
+            if (visitedMap.has(node)) {
+                res.push(stack.pop().val);
+            } else if (node.right) {
                 head = node.right;
+                visitedMap.set(node, true);
             } else {
-                res.push(node.val);
+                res.push(stack.pop().val);
             }
         }
     }
@@ -137,3 +141,5 @@ console.log('---中序---');
 console.log(inorder(node), noRecursionInorder(node));
 console.log('---后序---');
 console.log(postorder(node), noRecursionPostorder(node));
+
+
